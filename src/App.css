@@ -1,30 +1,29 @@
 .df { display: flex;}
 .fdc {flex-direction: column;}
 .jcc {justify-content: center;}
+.jcsb {justify-content: space-between;}
 .aic {align-items: center;}
 .w100 {width: 100%;}
 .cp { cursor: pointer;}
 .mt4 {margin-top: 4px}
 .mt8 {margin-top: 8px}
+.mr4 {margin-right: 4px}
 .p4 {padding: 4px}
 .p8 {padding: 8px}
 .p16 {padding: 16px}
 
 .bb { border: 1px solid var(--color)}
 
-.container {
-  width: 325px;
-  background: var(--background);
-}
-
 :root {
   --font-size: 16px;
   --font: "caveat";
   --font-alt: "Helvetica";
-  --background-main: #fff0d3;
+  --background-main: #fffaf0 /* #fff0d3;*/;
   --background: floralwhite;
+  --white: white;
   --color: darkblue;
-  --color-accent: cadetblue;
+  --color-accent: black; /* cadetblue;*/
+  --padding: 16px;
 }
 
 * { box-sizing: border-box;}
@@ -38,31 +37,90 @@ body {
   width: 100%;
   justify-content: center;
   align-items: center;
-  color: var(--color)
+  color: var(--color);
+  margin: 0;
+  /* overflow: hidden; */
 }
+
+#root { width: 100%; display: flex; flex-direction: column; height: 100vh; }
+
+header {
+  width: 100%;
+  background: var(--white);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding);
+}
+.logo {}
+.sign-out {
+  cursor: pointer;
+}
+
+.container {
+  width: 325px;
+  background: var(--white);
+}
+.input-container {
+  /* height: 30vh; */
+}
+.items-container {
+  height: 100%;
+  padding: 16px
+}
+
+.item-container {
+    border-radius: 6px;
+    display: flex;
+    margin-right: 4px
+}
+
+.item-qty {
+  padding: 6px;
+  background: lightgreen /* coral; mediumaquamarine paleturquoise*/
+}
+
+.item-val {
+  padding: 6px;
+  background: aquamarine;
+
+
+}
+.date {
+  padding: 6px;
+  width: 50px;
+
+}
+
 button {
   font-family: var(--font);
   font-size: var(--font-size);
   cursor: pointer;
-  background: var(--color-accent);
-  border: 1px solid var(--color);
+  background: var(--color);
+  border: none;
   height: 42px;
   color: var(--background)
 }
 button:hover {
   background: var(--color)
 }
-input {
-  height: 36px;
-  font-size: 18px;
-  font-family: var(--font-alt);
-}
 
 label {width: 100px;}
 
+ul {
+  list-style-type: none;
+  padding: 0
+}
 @font-face {
   font-family: "caveat" ;
   src: url(../public/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf);
+}
+
+input {
+  height: 36px;
+  font-size: var(--font-size);
+  font-family: var(--font);
 }
 
 .form label {
@@ -78,12 +136,28 @@ label {width: 100px;}
 }
 
 .notification {
+  display: flex;
   position: absolute;
-  bottom: 16px;
-  left: 16px;
-  padding: 4px 24px;
+  bottom: var(--padding);
+  left: var(--padding);
+  padding: 0px 24px;
   background: var(--color);
   border: 1px solid var(--color);
   color: var(--background);
-  border-radius: 3px;
+  height: 42px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateX(0px);
 }
+
+.notification.hide {
+  transform: translateX(-200px);
+}
+
+.show { 
+  opacity: 1;
+  visibility:visible;
+}
+

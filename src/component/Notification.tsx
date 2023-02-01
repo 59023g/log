@@ -15,18 +15,14 @@ function Notification( {notif, setNotif}: NotificationProps ) {
     }, 2000)
   })
 
+  const hide = notif ? '' : 'hide'
+  const type = notif?.type === 'success' ? 'success' : 'failure'
+
   return (
       <>
-        { !notif ? '' :
-          <div className={notif.type ==='success' ? 
-                  'notification success' : 
-                  'notification failure'
-          }>
-            {notif.message}
-          </div>
-        
-        }
-
+        <div className={`notification ${hide} ${type}`}>
+          {notif?.message}
+        </div>
       </>
   )
 }

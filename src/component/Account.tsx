@@ -3,11 +3,12 @@ import { supabase } from '../service/supabase'
 import { AuthError, Session } from '@supabase/supabase-js'
 
 
-const Account = ({ session, setNotif }: {session: Session, setNotif: any}) => {
-  const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState(null)
-  const [website, setWebsite] = useState(null)
-  const [avatar_url, setAvatarUrl] = useState(null)
+const Account = ({ session, setNotif }: 
+  {session: Session, setNotif: any}
+) => {
+  const [loading, setLoading] = useState<boolean>(true)
+  const [username, setUsername] = useState<string>('')
+  const [website, setWebsite] = useState<string>('')
 
   useEffect(() => {
     getProfile()
@@ -30,12 +31,9 @@ const Account = ({ session, setNotif }: {session: Session, setNotif: any}) => {
       if (data) {
         setUsername(data.username)
         setWebsite(data.website)
-        setAvatarUrl(data.avatar_url)
-        setNotif({type:"success", message: "Success. Logged in!"})
 
       }
     } catch (error) {
-      console.log(error)
       setNotif({type: "error", message: (error as AuthError).message})
     } finally {
 
@@ -53,7 +51,6 @@ const Account = ({ session, setNotif }: {session: Session, setNotif: any}) => {
       const updates = {
         username,
         website,
-        avatar_url,
         updated_at: new Date(),
       }
 
@@ -73,38 +70,32 @@ const Account = ({ session, setNotif }: {session: Session, setNotif: any}) => {
 
   return (
     <main className="container p16 bb df fdc" >
-          <div>
-          <form onSubmit={updateProfile} className="form">
-            <div className="df"><label>Email:</label> {session.user.email}</div>
-            <div className='mt8 df'>
-              <label htmlFor="username">Name</label>
-              <input
-                id="username"
-                type="text"
-                value={username || ''}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className='mt8 df'>
-              <label htmlFor="website">Website</label>
-              <input
-                id="website"
-                type="url"
-                value={website || ''}
-                onChange={(e) => setWebsite(e.target.value)}
-              />
-            </div>
-            <div className='mt8'>
-              <button className="w100" disabled={loading}>
-                Update profile
-              </button>
-            </div>
-          </form>
-          <button type="button" className="mt4 w100" onClick={() => supabase.auth.signOut()}>
-              Sign Out
-            </button>
-          </div>
-
+      <form onSubmit={updateProfile} className="form">
+        <div className="df"><label>Email:</label> {session.user.email}</div>
+        <div className='mt8 df'>
+          <label htmlFor="username">Name</label>
+          <input
+            id="username"
+            type="text"
+            value={username || ''}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className='mt8 df'>
+          <label htmlFor="website">Website</label>
+          <input
+            id="website"
+            type="url"
+            value={website || ''}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </div>
+        <div className='mt8'>
+          <button className="w100" disabled={loading}>
+            Update profile
+          </button>
+        </div>
+      </form>
     </main>
   )
 }
