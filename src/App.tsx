@@ -7,7 +7,7 @@ import Auth from './component/Auth'
 import Account from './component/Account'
 import Notification from './component/Notification'
 import SignOut from './component/SignOut'
-import InputItem from './component/InputItem'
+import Home from './component/Home'
 import Layout from "./component/Layout"
 
 import {
@@ -50,7 +50,7 @@ function App() {
           <Route 
             path="/" 
             element={
-              <InputItem session={session} setNotif={setNotif} /> 
+              <Home session={session} setNotif={setNotif} /> 
           }/>
 
           <Route path="/account" element={ 
