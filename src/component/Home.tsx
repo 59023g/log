@@ -12,7 +12,7 @@ export default function Home(
   
   return (
       <>
-      <ItemList session={session}/>
+      <ItemList session={session} setNotif={setNotif}/>
       <InputItem session={session} setNotif={setNotif}/>
       </>
   )

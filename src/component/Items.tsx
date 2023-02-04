@@ -1,12 +1,9 @@
 
 import Item from "./Item"
+import {parseItem} from "../utils"
 
 export default ({items, i}) => {
-  console.log(items)
-  const cool = items.map((s, i) => {
-    return s.items
-  })
-  console.log(cool)
+
   const renderDate = (date: Date) => {
       // ${("" + (date.getMonth() + 1)).padStart(2, '0')}-${date.getDate()}
     return `
@@ -16,16 +13,14 @@ export default ({items, i}) => {
 
   return (
     <div>
-      {cool.map((asdf, index) => {
+      {items.map((item, index) => {
         return (
           <div className="df mt4">
             <div className="date mr4">
               { renderDate(new Date(items[index].created_at)) }
             </div>
-            { asdf.map(subItems =>  <Item item={subItems}/>) }
-              
-  
-
+            {item.entry}
+            <Item item={parseItem(item.entry)} i={index}/>
           </div>
         );
       })}
