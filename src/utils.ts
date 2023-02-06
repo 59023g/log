@@ -17,3 +17,9 @@ export const parseItem = (itemString: string) => {
   }
   return finalArr
 }
+
+export const renderHourMinute = (date) => {
+  const d = new Date(date)
+  return `${d.getHours()}:${d.getMinutes()}`
+
+}

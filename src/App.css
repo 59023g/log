@@ -77,13 +77,14 @@ header {
 }
 
 .item-qty {
-  padding: 6px;
-  background: lightgreen /* coral; mediumaquamarine paleturquoise*/
+  /* padding: 6px; */
+  margin-right: 2px;
+  /* background: lightgreen coral; mediumaquamarine paleturquoise*/
 }
 
 .item-val {
-  padding: 6px;
-  background: aquamarine;
+  /* padding: 6px; */
+ /* background: aquamarine; */
 
 
 }

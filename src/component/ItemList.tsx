@@ -56,22 +56,33 @@ export default function InputItem({ session, setNotif }: {session: Session, setN
   return (
       <>
       <div className='items-container'>
-        {!items.length || loading ?
+        {!Object.keys(items).length || loading ?
         "Loading..." : 
           <ul>
-            {items.map((item, index) => {
-              return (
-                <li className="df mt4" key={index} data-id={index}>
-                  <div className="date mr4">
-                    { renderDate(new Date(items[index].created_at)) }
-                  </div>
-                    {parseItem(item.entry).map(
-                      (entry, i) => {
-                        return (<Item entry={entry} i={i}/>)
-                    })
-                  }
-                </li>
-              );
+            {Object.keys(items).map(
+              (day, index) => {
+               return (
+                <div>
+                  {day}
+
+                  {items[day].map((item, i) => {
+                    return (
+                    <div className='df'>
+                      <div className="mr4">{renderDate(new Date(item.created_at))}</div> 
+                      <div className="mr4">-</div> 
+                        {
+                        parseItem(item.entry).map((entry, i) => {
+                          return (<Item entry={entry} i={i}/>)
+
+                        })}
+                      </div>
+                      )
+                  })}
+
+        
+                </div>
+               )
+
             })}
             
           </ul>

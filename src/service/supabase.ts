@@ -4,6 +4,7 @@ import { ItemString, ParsedItems } from '../types'
 
 export const supabase = createClient(config.supabaseUrl, config.supabaseAnonKey)
 
+// https://learnsql.com/cookbook/how-to-group-by-month-in-postgresql/
 
 export const insertItem = async (
   user: Session["user"], 
